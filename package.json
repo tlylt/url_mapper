@@ -1,0 +1,20 @@
+{
+  "name": "url_mapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:backend": "cd backend && docker-compose -f docker-compose.test.yml up --exit-code-from backend --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlylt/url_mapper.git"
+  },
+  "keywords": [],
+  "author": "tlylt <liu_yongliang@hotmail.com> (https://github.com/tlylt)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tlylt/url_mapper/issues"
+  },
+  "homepage": "https://github.com/tlylt/url_mapper#readme"
+}

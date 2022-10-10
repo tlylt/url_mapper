@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        links:
+            - mongo
+        env_file:
+            - .env.test.safe
+        depends_on:
+            - mongo
+        command: npm run test:ci
+    mongo:
+        image: mongo
+        command:
+            - "--logpath"
+            - "/dev/null"
+        ports:
+            - "27017:27017"

@@ -1,0 +1,49 @@
+{
+  "name": "express-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "mocha --timeout 5000 ./test/*.spec.js --exit",
+    "test:dev": "nodemon --exec npm test",
+    "test:ci": "npm run lint:check && mocha --timeout 5000 ./test/*.spec.js --exit",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlylt/my-express-template.git"
+  },
+  "keywords": [],
+  "author": "tlylt <liu_yongliang@hotmail.com> (https://github.com/tlylt)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tlylt/my-express-template/issues"
+  },
+  "homepage": "https://github.com/tlylt/my-express-template#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^6.0.0",
+    "mongoose": "^6.4.5",
+    "morgan": "^1.10.0",
+    "nanoid": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "supertest": "^6.2.4"
+  }
+}
