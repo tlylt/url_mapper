@@ -4,10 +4,7 @@ import "dotenv/config"
 
 export async function connectMongoDB() {
     try {
-        const mongoDB =
-            process.env.ENV == "PROD"
-                ? process.env.DB_CLOUD_URI
-                : process.env.DB_LOCAL_URI;
+        const mongoDB = process.env.DB_URI ?? "mongodb://mongo:27017/urls";
         await mongoose.connect(mongoDB, {
             useNewUrlParser: true,
             useUnifiedTopology: true,

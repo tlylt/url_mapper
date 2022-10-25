@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    links:
+      - mongo
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    command:
+      - '--logpath'
+      - '/dev/null'
+    ports:
+      - '27017:27017'
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    environment:
+      - NEXT_PUBLIC_HOST=localhost
+    ports:
+      - '3000:3000'
+    links:
+      - backend
+    depends_on:
+      - backend

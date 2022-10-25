@@ -173,6 +173,10 @@ export async function redirectUrl(req, res) {
             return res.status(404).json({ message: "Could not find URL mapping!" })
         }
         if (resp.toUrl) {
+            // if toUrl does not start with http or https, then append https://
+            if (!resp.toUrl.startsWith('http://') && !resp.toUrl.startsWith('https://')) {
+                resp.toUrl = 'https://' + resp.toUrl
+            }
             return res.redirect(302, resp.toUrl)
         }
         return res.status(404).json({ message: `No Url is mapped to ${pad(fromUrl)}!` })

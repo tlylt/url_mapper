@@ -5,12 +5,12 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        environment:
+            - BASE_URL=
         ports:
-            - "8000:8000"
+            - "80:8000"
         links:
             - mongo
-        env_file:
-            - .env.test.safe
         depends_on:
             - mongo
     mongo:
