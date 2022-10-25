@@ -25,12 +25,7 @@ app.use("/api/v1", router).all((_, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
 })
 
-// Error handling
-app.use((err, _, res, next) => {
-    console.log(err)
-    res.status(500).send({ message: "Server error" })
-    next(err);
-})
+
 
 // CHECK SERVER ALIVE
 router.get("/status", (_, res) => {
@@ -60,15 +55,19 @@ router.delete("/urls/:fromUrl", deleteUrlMapping)
 // DELETE ALL URL MAPPING
 router.delete("/urls/", deleteAllUrlMappings)
 
+
 // REDIRECT
 const redirectRouter = express.Router();
 redirectRouter.get("/r/:fromUrl", redirectUrl)
 app.use('/', redirectRouter);
 
+// Error handling
+app.get('*', (_, res) => res.send('Page Not found 404!'));
+
 (async () => {
     await connectMongoDB()
 })();
 
-app.listen(8000, () => console.log("express server listening on port 8000"))
+app.listen(8000, () => console.log("express server is now up!"))
 
 export { app }

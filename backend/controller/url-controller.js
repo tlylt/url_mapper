@@ -43,7 +43,7 @@ export async function getUrlMapping(req, res) {
     try {
         const fromUrl = req.params.fromUrl
         const resp = await ormGetUrlMapping(fromUrl)
-        if (resp.err) {
+        if (resp === null || resp?.err) {
             return res.status(404).json({ message: "Could not find URL mapping!" })
         }
 
@@ -100,7 +100,7 @@ export async function deleteUrlMapping(req, res) {
     try {
         const fromUrl = req.params.fromUrl
         const resp = await ormGetUrlMapping(fromUrl)
-        if (resp.err) {
+        if (resp === null || resp?.err) {
             return res.status(404).json({ message: "Could not find URL mapping!" })
         }
         if (resp.toUrl) {
@@ -145,7 +145,7 @@ export async function updateUrlMapping(req, res) {
         const fromUrl = req.params.fromUrl
         const data = req.body
         const resp = await ormUpdateUrlMapping(fromUrl, data.toUrl)
-        if (resp.err) {
+        if (resp === null || resp?.err) {
             return res.status(404).json({ message: "Could not find URL mapping!" })
         } else {
             return res.status(200).json(
@@ -169,7 +169,7 @@ export async function redirectUrl(req, res) {
     try {
         const fromUrl = req.params.fromUrl
         const resp = await ormGetUrlMapping(fromUrl)
-        if (resp.err) {
+        if (resp === null || resp?.err) {
             return res.status(404).json({ message: "Could not find URL mapping!" })
         }
         if (resp.toUrl) {
