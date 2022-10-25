@@ -21,7 +21,8 @@ jobs:
           docker-compose -f docker-compose.test.yml up --exit-code-from backend --build
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
-
+      - name: Check file contents
+        run: ls -al
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
         with:
@@ -32,4 +33,4 @@ jobs:
           existing_bucket_name: elasticbeanstalk-ap-southeast-1-569931656253
           region: ap-southeast-1
           version_label: ${{ github.sha }}
-          deployment_package: deploy.zip
+          deployment_package: ./backend/deploy.zip
